@@ -1,0 +1,33 @@
+--Create a fashion store database
+
+CREATE TABLE fashion(id INTEGER PRIMARY KEY, name TEXT, price INTEGER, aisle INTEGER, stock INTEGER);
+
+INSERT INTO fashion VALUES (1, "blouses", 8.99, 1, 10);
+INSERT INTO fashion VALUES (2, "tank top", 3.98, 1, 15);
+INSERT INTO fashion VALUES (3, "jacket", 25.98,1, 8);
+INSERT INTO fashion VALUES (4, "shorts", 12.98, 2, 13);
+INSERT INTO fashion VALUES (5, "leggings", 15.99, 2, 12);
+INSERT INTO fashion VALUES (6, "jeans", 35.98, 2, 23);
+INSERT INTO fashion VALUES (7, "skirt", 19.98, 2, 15);
+INSERT INTO fashion VALUES (8, "socks", 6.99, 3, 10);
+INSERT INTO fashion VALUES (9, "shoes", 20.99, 3, 22);
+INSERT INTO fashion VALUES (10, "dress", 15.98, 1, 25);
+INSERT INTO fashion VALUES (11, "earrings", 8.98, 4, 17);
+INSERT INTO fashion VALUES (12, "bracelette", 6.98, 4, 20);
+INSERT INTO fashion VALUES (13, "necklace", 9.98, 4, 14);
+INSERT INTO fashion VALUES (14, "purse", 20.98, 5, 9);
+INSERT INTO fashion VALUES (15, "belt", 12.99, 5, 15);
+SELECT * FROM fashion;
+
+--what is the SUM of stock in each aisle?
+SELECT aisle, SUM(stock) FROM fashion
+GROUP BY aisle;
+
+--display the database ordered by price.
+SELECT * FROM fashion
+ORDER BY price desc;
+
+--what is the average price in aisle 1?
+SELECT AVG(price) "avg aisle 1 price"
+FROM fashion
+WHERE aisle="1"
