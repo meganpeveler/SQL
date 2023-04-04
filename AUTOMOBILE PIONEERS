@@ -1,0 +1,46 @@
+/*In this project, you’re going to make your own table with some small set of “famous people”, then make more tables about things they do and join those to create nice human readable lists. One of the tables contains a column that relates to the primary key of another table.
+Has one query that does a JOIN.*/
+
+CREATE TABLE automobile_pioneers 
+        (id INTEGER PRIMARY KEY AUTOINCREMENT,
+        fullname TEXT, 
+        birthdate TEXT,
+        nationality TEXT,
+        company_founded TEXT);
+
+INSERT INTO automobile_pioneers (fullname, birthdate, nationality, company_founded) VALUES ("Elon Musk", "June 28, 1971", "South Africa, Canada, America", "Tesla");
+INSERT INTO automobile_pioneers (fullname, birthdate, nationality,company_founded) VALUES ("Henry Ford", "July 30, 1863", "America", "Ford");
+INSERT INTO automobile_pioneers (fullname, birthdate, nationality, company_founded) VALUES ("Carl Benz", "November 25, 1844", "Germany", "Mercededes");
+INSERT INTO automobile_pioneers (fullname, birthdate, nationality, company_founded) VALUES ("Ferdinand Porsche", "September 3, 1875", "Austria-Hungary", "Porsche");
+INSERT INTO  automobile_pioneers (fullname, birthdate, nationality, company_founded) VALUES ("Kiichiro Toyoda", "June 11, 1894", "Japan", "Toyota");
+INSERT INTO  automobile_pioneers (fullname, birthdate, nationality, company_founded) VALUES ("Enzo Ferrari", "Febuary 18, 1988", " Italy", "Ferrari");
+
+
+CREATE TABLE success 
+        (auto_pioneer_id INTEGER,
+        company_revenue TEXT, 
+        first_invention TEXT, 
+        le_mans_wins INTEGER);
+
+INSERT INTO success (auto_pioneer_id, company_revenue, first_invention, le_mans_wins ) VALUES (1, "81.46 billion", "electric Roadster", 0);
+INSERT INTO success (auto_pioneer_id, company_revenue , first_invention, le_mans_wins ) VALUES (2, "158 billion", "Quadricycle", 4);
+INSERT INTO success (auto_pioneer_id, company_revenue, first_invention,le_mans_wins ) VALUES (3, "157.96 billion","Benz Mototrwagon", 2);
+INSERT INTO success (auto_pioneer_id, company_revenue, first_invention, le_mans_wins) VALUES (4, "37.6 billion","P1", 19);
+INSERT INTO success (auto_pioneer_id, company_revenue, first_invention, le_mans_wins) VALUES (5, "267.2 billion", "Model AA", 3);
+INSERT INTO success (auto_pioneer_id, company_revenue, first_invention, le_mans_wins) VALUES (6, "5.36 billion", "125 S", 9);
+ 
+SELECT * FROM automobile_pioneers;
+SELECT * FROM success;
+
+/* Return company revenue of each automobile pioneer*/
+SELECT automobile_pioneers.company_founded, success.company_revenue
+FROM automobile_pioneers
+LEFT OUTER JOIN success
+ON automobile_pioneers.id = success.auto_pioneer_id;
+
+/* Return Le Mans race wins from each automobile pioneer*/
+SELECT automobile_pioneers.company_founded, success.le_mans_wins
+FROM automobile_pioneers
+LEFT OUTER JOIN success
+ON automobile_pioneers.id = success.auto_pioneer_id
+ORDER BY le_mans_wins asc;
